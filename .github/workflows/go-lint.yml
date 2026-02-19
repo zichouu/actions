@@ -1,0 +1,21 @@
+name: go-lint
+on:
+  workflow_call:
+jobs:
+  go-lint:
+    runs-on: ubuntu-latest
+    permissions:
+        contents: write
+        pull-requests: read
+        checks: write
+    steps:
+      - name: 1. Checkout
+        uses: actions/checkout@v6
+      - name: 2. Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: stable
+      - name: 3. Lint
+        uses: golangci/golangci-lint-action@v9
+        with:
+          version: latest
